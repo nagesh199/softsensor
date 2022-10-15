@@ -1,0 +1,65 @@
+.head{
+    width:100%;
+    height:50px;
+    border: 1px solid black;
+    background-color: darkgrey;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.head>p {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 8px;
+}
+.card{
+   width:300px;
+   margin: auto;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+   margin-top:10px;
+   padding: 10px;
+}
+.card>img {
+    width:250px;
+    height:250px
+}
+.card>button{
+    background-color:gray;
+}
+.detail{
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+    width:700px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.detail>div {
+  border: 1px solid black;
+  padding: 50px 10px;
+  text-align: left;
+  
+}
+.detail img {
+    width:300px;
+    height:300px
+}
+.right>h4{
+    margin-top: 25px;
+}
+.right>p {
+   margin-top: 20px;
+   font-size: 15px;
+   text-align: left;
+}
+.right>p:nth-child(3){
+   font-size: 20px;
+   font-weight: 500;
+}
+.btn {
+    display: flex;
+    gap:10px
+}
+button {
+    background-color:gray
+}

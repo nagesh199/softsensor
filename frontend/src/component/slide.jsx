@@ -1,41 +1,51 @@
-import Carousel from 'react-bootstrap/Carousel';
+import React, { useState, useEffect } from "react";
+import styles from "./main.module.css"
+import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
+// import useStateWithCallback from 'use-state-with-callback';
 
-const Slide=()=> {
+export const  Scroll=()=> {
+  const [state, setState] = useState({ posts: [], limit: 20 });
+  const { posts } = state;
+  console.log("limit", state.limit);
+
+  const fetchData = () => {
+    // return(<div>hello</div>)
+    
+    setState({ ...state, limit: state.limit + 5 });
+    axios
+      .get(`http://localhost:8080/product/get/?_limit=${state.limit}`)
+      .then(data => {
+        setState({ ...state, posts: state.posts.concat(data.data) });
+        console.log("fetched data", data.data);
+      });
+  };
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/product/get/?_limit=${state.limit}`)
+      .then(data => {
+        setState({ ...state, posts: data.data });
+        console.log("initialData", data.data);
+      });
+  }, []);
+  console.log("total", state.posts.length);
   return (
-    <Carousel>
-      <Carousel.Item>
-        <img 
-          width="100%"
-          height="400px"
-          className="d-block w-100"
-          src="https://www.drip.com/hs-fs/hubfs/Imported_Blog_Media/Ralph-Lauren-GIF-2.gif?width=600&height=497&name=Ralph-Lauren-GIF-2.gif"
-          alt="First slide"
-        />
-       
-      </Carousel.Item>
-      <Carousel.Item>
-      <img
-          width="100%"
-          height="400px"
-          className="d-block w-100"
-          src="https://morecustomersapp.com/wp-content/uploads/2022/06/Banners-on-eCommerce-site.gif"
-          alt="Third slide"
-        />
-
-       
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          width="100%"
-          height="400px"
-          className="d-block w-100"
-          src="https://images.squarespace-cdn.com/content/v1/54075d27e4b021337ce39834/1543474118952-1LCP2IKSO7WOW9DHILI8/ear02.gif"
-          alt="Third slide"
-        />
-
-      </Carousel.Item>
-    </Carousel>
+    <InfiniteScroll
+      dataLength={state.posts.length}
+      next={fetchData}
+      hasMore={true}
+      loader={<div>loader</div>}
+    >
+      <ul className="App">
+        {posts.map((el, index) => (
+             <div className={styles.card}>
+                    <img src={el.image}/>
+                    <h4>{el.title}</h4>
+                    <p>Rating : {el.rating.rate}</p>
+                    {/* <button onClick={()=>handleClick(el._id)}>Add To Cart</button> */}
+             </div>
+        ))}
+      </ul>
+    </InfiniteScroll>
   );
 }
-
-export default Slide;

@@ -1,18 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import  { MainRoutes } from './routes/main';
+import { Scroll } from './component/slide';
 
-import  Home  from './component/home';
-import Header from './component/navbar';
-import Product from './component/product';
-import Slide from './component/slide';
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Slide/>
-      <Product/>
-      <Home/>
+       
+        <MainRoutes/>
+        
     </div>
   );
 }
