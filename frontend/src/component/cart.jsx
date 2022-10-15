@@ -9,7 +9,7 @@ const Cart =()=>{
   const [singal,setSingal] = useState({})
   const navigate = useNavigate()
   useEffect(()=>{
-      axios.get(`http://localhost:8080/product/get/${id}`).then(({data})=>{
+      axios.get(`https://productpagebackend.herokuapp.com/product/get/${id}`).then(({data})=>{
          setSingal(data)
       })
   },[])
