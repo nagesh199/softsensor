@@ -14,7 +14,7 @@ export const  Product=()=> {
   const fetchData = () => {
     
     
-    setState({ ...state, limit: state.limit + 5 });
+    setState({ ...state, limit: state.limit + 1 });
     axios
       .get(`https://productpagebackend.herokuapp.com/product/get/?_limit=${state.limit}`)
       .then(data => {
